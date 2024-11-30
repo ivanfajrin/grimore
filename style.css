@@ -1,3 +1,15 @@
+#link-grid {
+    display: flex;
+    flex-wrap: wrap; /* Agar item turun ke baris berikutnya jika tidak muat */
+    gap: 10px; /* Jarak antar item */
+    justify-content: center; /* Atur posisi item di tengah */
+}
+
+.grid-item {
+    flex: 0 1 calc(20% - 10px); /* Lebar relatif, 20% dari container dikurangi gap */
+    box-sizing: border-box; /* Pastikan padding tidak memengaruhi ukuran */
+    text-align: center;
+}
 /* Style untuk grid dan tombol */
         .grid-container {
             display: grid;
@@ -8,10 +20,6 @@
             margin-top: 50px;
         }
 
-        .grid-item {
-            padding: 20px;
-            text-align: center;
-        }
 
         .grid-item a {
             display: inline-block;
