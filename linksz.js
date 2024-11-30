@@ -1,65 +1,10 @@
  const links = [
- { 
-    url: 'file:///D:/24ujicoba/5/cn%20group/cn%20Drawing%20App%20JavaScript/index.html', 
-    text: 'Drawing App JavaScript', 
-    color: '#FF5733', 
-    description: 'JavaScript app for drawing on canvas.' 
-},
 { 
-    url: 'file:///D:/24ujicoba/5/cn%20group/cn%20Gradient%20Color%20Generator%20JavaScript/index.html', 
-    text: 'Gradient Color Generator', 
-    color: '#33FF57', 
-    description: 'Tool for generating CSS gradient colors.' 
-},
-{ 
-    url: 'file:///D:/24ujicoba/5/Urgenthirarky.html', 
+    url: 'Urgenthirarky.html', 
     text: 'urgent hierarky', 
     color: '#66DE97', 
     description: 'Tool for generating CSS gradient colors.' 
 },
-{ 
-    url: 'file:///D:/24ujicoba/5/cn%20group/cn%20notepad%20code%20nepal/index.html', 
-    text: 'Notepad Code Nepal', 
-    color: '#5733FF', 
-    description: 'A simple notepad created using JavaScript.' 
-},
-{ 
-    url: 'file:///D:/24ujicoba/5/cn%20group/cn%20piano/index.html', 
-    text: 'Piano', 
-    color: '#FFC300', 
-    description: 'Virtual piano application using JavaScript.' 
-},
-{ 
-    url: 'file:///D:/24ujicoba/5/cn%20group/cn%20QR%20Code%20Generator/index.html', 
-    text: 'QR Code Generator', 
-    color: '#DAF7A6', 
-    description: 'Generate QR codes using JavaScript.' 
-},
-{ 
-    url: 'file:///D:/24ujicoba/5/cn%20group/cn%20Save%20Text%20As%20File%20JavaScript/index.html', 
-    text: 'Save Text As File JavaScript', 
-    color: '#FF5733', 
-    description: 'JavaScript tool to save text as a file.' 
-},
-{ 
-    url: 'file:///D:/24ujicoba/5/cn%20group/cn%20Text%20To%20Speech%20Converter%20in%20JavaScript/index.html', 
-    text: 'Text To Speech Converter', 
-    color: '#C70039', 
-    description: 'JavaScript app to convert text to speech.' 
-},
-{ 
-    url: 'file:///D:/24ujicoba/5/cn%20group/cn%20Todo%20List%20App/index.html', 
-    text: 'Todo List App', 
-    color: '#900C3F', 
-    description: 'A simple todo list application in JavaScript.' 
-},
-{ 
-    url: 'file:///D:/24ujicoba/5/cn%20group/cn%20ujicoba%20foto%20editor/index.html', 
-    text: 'Foto Editor', 
-    color: '#581845', 
-    description: 'Simple photo editor using JavaScript.' 
-},
-
 { url: 'https://www.google.com', text: 'Google', color: '#4285F4', description: 'Search engine for the web.' },
 { url: 'https://www.facebook.com', text: 'Facebook', color: '#1877F2', description: 'Social media platform.' },
 { url: 'https://www.twitter.com', text: 'Twitter', color: '#1DA1F2', description: 'Microblogging and social networking service.' },
