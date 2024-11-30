@@ -11,10 +11,6 @@ let currentPage = 1; // Halaman aktif
 // Urutkan tautan berdasarkan jumlah klik yang tersimpan
 const sortedLinks = sortLinksByClicks();
 const totalPages = Math.ceil(sortedLinks.length / ITEMS_PER_PAGE);
-const gridItem = document.createElement('div');
-gridItem.classList.add('grid-item');
-
-gridItem.innerHTML = `<a href="${link.url}" target="_blank" style="background-color: ${link.color}; display: block; padding: 10px; border-radius: 5px;">${link.text}</a>`;
 
 // Fungsi untuk merender grid berdasarkan halaman aktif
 function renderGrid(page) {
