@@ -1,6 +1,6 @@
  const links = [
 { 
-    url: 'Urgenthirarky.html', 
+    url: './Urgenthirarky.html', 
     text: 'urgent hierarky', 
     color: '#66DE97', 
     description: 'Tool for generating CSS gradient colors.' 
