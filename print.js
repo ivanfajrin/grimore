@@ -5,7 +5,7 @@ const openSidebarBtn = document.getElementById('openSidebar');
 const linkList = document.getElementById('linkList');
 const pagination = document.getElementById('pagination'); // Elemen untuk navigasi pagination
 
-const ITEMS_PER_PAGE = 40; // Jumlah item per halaman
+const ITEMS_PER_PAGE = 60; // Jumlah item per halaman
 let currentPage = 1; // Halaman aktif
 
 // Urutkan tautan berdasarkan jumlah klik yang tersimpan
