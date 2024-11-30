@@ -3,41 +3,61 @@ const counterElement = document.getElementById('counter');
 const sidebar = document.getElementById('sidebar');
 const openSidebarBtn = document.getElementById('openSidebar');
 const linkList = document.getElementById('linkList');
+const pagination = document.getElementById('pagination'); // Elemen untuk navigasi pagination
+
+const ITEMS_PER_PAGE = 10; // Jumlah item per halaman
+let currentPage = 1; // Halaman aktif
 
 // Urutkan tautan berdasarkan jumlah klik yang tersimpan
 const sortedLinks = sortLinksByClicks();
+const totalPages = Math.ceil(sortedLinks.length / ITEMS_PER_PAGE);
 
-// Set untuk melacak URL yang sudah ditambahkan
-const urlSet = new Set();
+// Fungsi untuk merender grid berdasarkan halaman aktif
+function renderGrid(page) {
+    linkGrid.innerHTML = ''; // Hapus semua item sebelumnya
+    const start = (page - 1) * ITEMS_PER_PAGE;
+    const end = page * ITEMS_PER_PAGE;
+    const paginatedLinks = sortedLinks.slice(start, end);
 
-// Tambahkan tautan ke grid
-sortedLinks.forEach(link => {
-    // Cek apakah URL sudah ada
-    if (urlSet.has(link.url)) {
-        alert(`Duplicate link found: ${link.text} (${link.url})`);
-        return; // Jika ada duplikat, skip link ini
-    }
-    
-    // Tambahkan URL ke Set
-    urlSet.add(link.url);
+    paginatedLinks.forEach(link => {
+        const gridItem = document.createElement('div');
+        gridItem.classList.add('grid-item');
+        
+        gridItem.innerHTML = `<a href="${link.url}" target="_blank" style="background-color: ${link.color};">${link.text}</a>`;
+        
+        gridItem.querySelector('a').addEventListener('click', function() {
+            incrementClickCount(link.text);
+            updateSidebar(link);
+        });
 
-    const gridItem = document.createElement('div');
-    gridItem.classList.add('grid-item');
-    
-    // Menggunakan warna dari objek link
-    gridItem.innerHTML = `<a href="${link.url}" target="_blank" style="background-color: ${link.color};">${link.text}</a>`;
-    
-    // Event listener untuk melacak klik dan memperbarui sidebar dengan deskripsi
-    gridItem.querySelector('a').addEventListener('click', function() {
-        incrementClickCount(link.text);
-        updateSidebar(link);
+        linkGrid.appendChild(gridItem);
     });
 
-    linkGrid.appendChild(gridItem);
-});
+    // Update counter
+    counterElement.innerText = `Showing ${start + 1} to ${Math.min(end, sortedLinks.length)} of ${sortedLinks.length} links`;
+    renderPagination();
+}
 
-// Update counter untuk menunjukkan jumlah tombol
-counterElement.innerText = `Total Links: ${sortedLinks.length}`;
+// Fungsi untuk merender navigasi pagination
+function renderPagination() {
+    pagination.innerHTML = ''; // Hapus navigasi sebelumnya
+
+    for (let i = 1; i <= totalPages; i++) {
+        const pageButton = document.createElement('button');
+        pageButton.innerText = i;
+        pageButton.classList.add('page-btn');
+        if (i === currentPage) {
+            pageButton.classList.add('active');
+        }
+
+        pageButton.addEventListener('click', () => {
+            currentPage = i;
+            renderGrid(currentPage);
+        });
+
+        pagination.appendChild(pageButton);
+    }
+}
 
 // Fungsi untuk melacak klik
 function incrementClickCount(linkText) {
@@ -72,5 +92,6 @@ openSidebarBtn.addEventListener('click', () => {
     updateSidebar();
 });
 
-// Inisialisasi sidebar saat pertama kali dimuat
+// Inisialisasi tampilan
+renderGrid(currentPage);
 updateSidebar();
