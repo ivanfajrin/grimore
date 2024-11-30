@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title> video uji coba</title>
+</head>
+<body>
+	<div container>
+		<input type="file" class="file-input" accept="image/*">
+		<div id= "output1">
+			<div id="preview">
+				
+            	<div class="preview-img">
+                	<img src="image-placeholder.svg" alt="preview-img">
+            	</div>
+
+			</div>
+		</div>
+	</div>
+	<script>
+		const output1 = document.getElementbyId("output1");
+
+		const loadImages = () => {
+			let = fileInput.files[0];
+			 if(!file) return; //mengemblikan jika tidak mau 
+			output1.src = URL.createObjectURL(file);//melanjutkan url
+			output1Img.addEventListener("load", () => {
+			resetFilterBtn.click();\
+			});
+
+		}
+	</script>
+</body>
+</html>

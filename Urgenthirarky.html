@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urgency Hierarchy with CRUD</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <style>
+        .container {
+            margin-top: 20px;
+        }
+        .box {
+            min-height: 200px;
+            padding: 15px;
+            border: 2px dashed #ccc;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            background-color: #f8f9fa;
+        }
+        .box-header {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .task {
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #e9ecef;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: grab;
+        }
+        .task .actions {
+            float: right;
+        }
+        .task .actions button {
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Urgency Hierarchy with CRUD</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <div id="important-urgent" class="box">
+                    <div class="box-header">Important & Urgent</div>
+                </div>
+                <div id="important-not-urgent" class="box">
+                    <div class="box-header">Important but Not Urgent</div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div id="not-important-urgent" class="box">
+                    <div class="box-header">Not Important but Urgent</div>
+                </div>
+                <div id="not-important-not-urgent" class="box">
+                    <div class="box-header">Not Important & Not Urgent</div>
+                </div>
+            </div>
+        </div>
+        <button id="add-task" class="btn btn-primary mt-4">Add Task</button>
+    </div>
+
+    <script>
+        // Initialize task list from localStorage or empty object
+        let tasks = JSON.parse(localStorage.getItem('tasks')) || {
+            "important-urgent": [],
+            "important-not-urgent": [],
+            "not-important-urgent": [],
+            "not-important-not-urgent": []
+        };
+
+        function saveTasks() {
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+        }
+
+        function renderTasks() {
+            Object.keys(tasks).forEach((boxId) => {
+                const container = $(`#${boxId}`);
+                container.children('.task').remove(); // Clear existing tasks
+                tasks[boxId].forEach((task, index) => {
+                    const taskElement = $(`
+                        <div class="task" data-index="${index}" data-box="${boxId}">
+                            <span>${task.title}</span>
+                            <div class="actions">
+                                <button class="btn btn-sm btn-warning edit-task">Edit</button>
+                                <button class="btn btn-sm btn-danger delete-task">Delete</button>
+                            </div>
+                        </div>
+                    `);
+                    container.append(taskElement);
+                });
+            });
+        }
+
+        function addTask() {
+            const title = prompt("Enter task title:");
+            if (!title) return;
+            const description = prompt("Enter task description:");
+            if (!description) return;
+
+            tasks["important-urgent"].push({ title, description });
+            saveTasks();
+            renderTasks();
+            alert("Task added successfully!");
+        }
+
+        function editTask(boxId, index) {
+            const task = tasks[boxId][index];
+            const newTitle = prompt("Edit task title:", task.title);
+            if (newTitle === null) return;
+            const newDescription = prompt("Edit task description:", task.description);
+            if (newDescription === null) return;
+
+            tasks[boxId][index] = { title: newTitle, description: newDescription };
+            saveTasks();
+            renderTasks();
+            alert("Task updated successfully!");
+        }
+
+        function deleteTask(boxId, index) {
+            const confirmDelete = confirm("Are you sure you want to delete this task?");
+            if (!confirmDelete) return;
+
+            tasks[boxId].splice(index, 1);
+            saveTasks();
+            renderTasks();
+            alert("Task deleted successfully!");
+        }
+
+        $(function() {
+            // Initial render
+            renderTasks();
+
+            // Add Task button
+            $('#add-task').click(addTask);
+
+            // Make tasks draggable and sortable
+            $(".box").sortable({
+                connectWith: ".box",
+                placeholder: "ui-state-highlight",
+                stop: function(event, ui) {
+                    const taskElement = ui.item;
+                    const oldBoxId = taskElement.data("box");
+                    const newBoxId = ui.item.closest(".box").attr("id");
+                    const index = taskElement.data("index");
+
+                    // Move task between boxes
+                    const task = tasks[oldBoxId].splice(index, 1)[0];
+                    tasks[newBoxId].push(task);
+                    saveTasks();
+                    renderTasks();
+                }
+            }).disableSelection();
+
+            // Task actions (edit and delete)
+            $(".container").on("click", ".edit-task", function() {
+                const taskElement = $(this).closest('.task');
+                const boxId = taskElement.data("box");
+                const index = taskElement.data("index");
+                editTask(boxId, index);
+            });
+
+            $(".container").on("click", ".delete-task", function() {
+                const taskElement = $(this).closest('.task');
+                const boxId = taskElement.data("box");
+                const index = taskElement.data("index");
+                deleteTask(boxId, index);
+            });
+        });
+    </script>
+</body>
+</html>

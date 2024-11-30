@@ -1,0 +1,60 @@
+
+<!<DOCTYPE html>
+<html lan="en" dir="ltr">
+<link rel="stylesheet" type="text/css" href="foto editor.css">
+<head>
+	<meta charset="utf-8">
+	<title>foto editor</title>
+
+	
+</head>
+<body>
+	<div class= "container disable">
+		<h2>Image Editor  ivan </h2>
+			<div class="wrapper">
+				<div class="editor-panel">
+					<div class= "filter">
+						<label class="title">Filter</label>
+						<div class="options">
+							<button id = "brightness" class="active">Brightness</button>
+							<button id = "saturation" >Saturation</button>
+							<button id = "invertion" >Invertion</button>
+							<button id = "grayscale" >Grayscale</button>
+						</div>
+					
+						<div class="slider">
+							<div class="filter-info">
+								<p class="name">Brighteness</p>
+								<p class="value">100%</p>
+							</div>
+			<input type= "range" value="100" min="0" max="200">					
+						</div>
+					</div>
+				<div class="rotate">
+					<label class="title"></label>
+						<div class="options">
+						<button id= "left"><i class="fa-solid fa-rotate-left"></i></button>
+						<button id= "right"><i class="fa-solid fa-rotate-right"></i></button>
+						<button id= "horizonal"><i class="bx bx-reflect-vertical"></i></button>
+						<button id="vertical"><i class="bx bx-reflect-horizontal"></i></button>
+					</div>
+				</div>
+			</div>	
+				<div class="preview-img">
+					<img src="preview.svg" alt="preview-img">
+				</div>
+			</div>
+	
+		<div class="controls">
+			<button class="reset-filter">Reset filter</button>
+			<div class="row">
+				<input type="file" class="file-input" accept="image/*" hidden>
+				<button class="choose-img">choose image</button>
+				<button class="save-img">save image</button>
+				</div>
+			</div>
+		</div>
+
+	<script src="new.js"></script>
+</body>
+</html>

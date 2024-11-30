@@ -1,0 +1,105 @@
+/* Style untuk grid dan tombol */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            width: 80%;
+            margin: auto;
+            margin-top: 50px;
+        }
+
+        .grid-item {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .grid-item a {
+            display: inline-block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: white;
+            border-radius: 5px;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+        }
+
+        .grid-item a:hover {
+            opacity: 0.8;
+        }
+
+        /* Style untuk header dan counter */
+        .header {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .counter {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        /* Style untuk sidebar */
+        .sidebar {
+            height: 100%;
+            width: 300px;
+            position: fixed;
+            top: 0;
+            right: 0;
+            background-color: #333;
+            color: white;
+            overflow-x: hidden;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            padding: 20px;
+        }
+
+        .sidebar.active {
+            transform: translateX(0);
+        }
+
+        .sidebar h2 {
+            margin-top: 0;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin: 10px 0;
+        }
+
+        .sidebar ul li span {
+            display: block;
+            font-size: 16px;
+        }
+
+        .open-sidebar {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+/* Style untuk tombol penutup sidebar */
+.close-sidebar {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
