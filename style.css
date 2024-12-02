@@ -1,5 +1,5 @@
 #link-grid {
-    display: flex;
+
     flex-wrap: wrap; /* Agar item turun ke baris berikutnya jika tidak muat */
     gap: 10px; /* Jarak antar item */
     justify-content: center; /* Atur posisi item di tengah */
